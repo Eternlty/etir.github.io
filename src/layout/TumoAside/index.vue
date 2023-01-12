@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import { Location, Menu, Edit, Setting } from '@element-plus/icons-vue';
+import { useAppStore } from '@/store/modules/app';
+import { computed } from 'vue';
+
+const appStore = useAppStore()
+const opened = computed(() => appStore.getSidebarStatus)
 </script>
 
 <template>
-  <el-menu router default-active="2">
+  <el-menu v-if='opened' router default-active="2">
     <el-sub-menu index="1">
       <template #title>
         <el-icon>

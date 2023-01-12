@@ -1,18 +1,18 @@
 <template>
-  <div class='tumo-header'>
-    <div class='tumo-header-left' @click='onClick'>
-      <el-icon>
+  <div class="tumo-header">
+    <div class="tumo-header-left">
+      <el-icon @click="toggleSidebar">
         <Fold />
       </el-icon>
       后台
     </div>
-    <div class='tumo-header-right'>
+    <div class="tumo-header-right">
       <el-dropdown>
-        <span class='tumo-dropdown-link'>
+        <span class="tumo-dropdown-link">
           <el-image
-            src='http://thirdqq.qlogo.cn/qqapp/1105748669/723468CA6AAB637021BFBAD8097D6758/40'
+            src="http://thirdqq.qlogo.cn/qqapp/1105748669/723468CA6AAB637021BFBAD8097D6758/40"
           />
-          <span> {{ userStore.currentUser.name }}打开项目打算阿达的 </span>
+          <span> {{ userStore.currentUser.name }} </span>
         </span>
         <template #dropdown>
           <el-dropdown-menu>
@@ -28,19 +28,20 @@
   </div>
 </template>
 
-<script setup lang='ts'>
+<script setup lang="ts">
 import { useUserStore } from '@/store/modules/user';
-import { request } from '@/util/request';
-import { Setting, Fold } from '@element-plus/icons-vue';
+import { Fold, Setting } from '@element-plus/icons-vue';
+import { useAppStore } from '@/store/modules/app';
 
 const userStore = useUserStore();
+const appStore = useAppStore();
 
-const onClick = async () => {
-  const data = await request(undefined, { cmd: 'index' });
+const toggleSidebar = () => {
+  appStore.toggleSidebar();
 };
 </script>
 
-<style scoped lang='less'>
+<style scoped lang="less">
 .tumo-header {
   height: 48px;
   overflow: hidden;
