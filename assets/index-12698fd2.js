@@ -1,1 +1,0 @@
-import{d as n,u as o,c,a as u,r as l,b as m,F as _,o as e,e as i,w as p,f as d,t as f}from"./index-5dca5c56.js";import{E as x}from"./el-card-7d1fe856.js";const S=n({__name:"index",setup(k){const t=o(),r=c(()=>t.userList);return(B,C)=>{const s=x;return e(!0),u(_,null,l(m(r),a=>(e(),i(s,null,{default:p(()=>[d(f(a.name),1)]),_:2},1024))),256)}}});export{S as default};
