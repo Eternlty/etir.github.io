@@ -17,7 +17,12 @@
     z-index: 1000;
 }
 
-.el-main {
+.el-main-open {
     margin-top: 49px;
     margin-left: 240px;
+}
+
+
+.el-main-close {
+    margin-top: 49px;
 }
