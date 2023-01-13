@@ -5,7 +5,7 @@ interface AppState {
   sidebar: Sidebar;
 }
 
-export const useAppStore = defineStore('userStore', {
+export const useAppStore = defineStore('appStore', {
   state: (): AppState => {
     return {
       sidebar: {

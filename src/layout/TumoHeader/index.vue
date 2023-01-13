@@ -2,7 +2,8 @@
   <div class="tumo-header">
     <div class="tumo-header-left">
       <el-icon @click="toggleSidebar">
-        <Fold />
+        <Fold v-if='opened' />
+        <Expand v-else/>
       </el-icon>
       后台
     </div>
@@ -30,11 +31,17 @@
 
 <script setup lang="ts">
 import { useUserStore } from '@/store/modules/user';
-import { Fold, Setting } from '@element-plus/icons-vue';
+import { Fold, Setting, Expand } from '@element-plus/icons-vue';
 import { useAppStore } from '@/store/modules/app';
+import { computed } from 'vue';
 
 const userStore = useUserStore();
 const appStore = useAppStore();
+
+const opened = computed(() => appStore.getSidebarStatus)
+const user = computed(() => userStore.getCurrentUser)
+
+console.log(user)
 
 const toggleSidebar = () => {
   appStore.toggleSidebar();
@@ -80,7 +87,8 @@ const toggleSidebar = () => {
 
     .tumo-dropdown-link {
       height: 48px;
-      padding: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
       display: flex;
       align-items: center;
       justify-content: space-around;

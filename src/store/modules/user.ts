@@ -11,8 +11,11 @@ export const useUserStore = defineStore('userStore', {
     return {
       currentUser: {
         name: '测试',
+        uid: '',
+        h5openid: '',
+        h5token: '',
       },
-      userList: [{ name: '12' }, { name: '23' }],
+      userList: [],
     };
   },
   getters: {

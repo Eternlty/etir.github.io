@@ -1,16 +1,23 @@
-@import './base.css';
 
-
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
+.el-header {
+    padding: 0;
+    height: 48px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+.el-aside {
+    width: 240px;
+    position: fixed;
+    top: 49px;
+    left: 0;
+    z-index: 1000;
 }
 
+.el-main {
+    margin-top: 49px;
+    margin-left: 240px;
+}

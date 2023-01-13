@@ -1,55 +1,31 @@
-<script setup lang="ts">
-import { Location, Menu, Edit, Setting } from '@element-plus/icons-vue';
-import { useAppStore } from '@/store/modules/app';
-import { computed } from 'vue';
-
-const appStore = useAppStore()
-const opened = computed(() => appStore.getSidebarStatus)
+<script setup lang='ts'>
+import { Edit, House, Menu, Setting } from '@element-plus/icons-vue';
 </script>
 
 <template>
-  <el-menu v-if='opened' router default-active="2">
-    <el-sub-menu index="1">
-      <template #title>
-        <el-icon>
-          <Location />
-        </el-icon>
-        <span>Navigator One</span>
-      </template>
-      <el-menu-item-group title="Group One">
-        <el-menu-item index="1-1">item one</el-menu-item>
-        <el-menu-item index="1-2">item two</el-menu-item>
-      </el-menu-item-group>
-      <el-menu-item-group title="Group Two">
-        <el-menu-item index="1-3">item three</el-menu-item>
-      </el-menu-item-group>
-      <el-sub-menu index="1-4">
-        <template #title>item four</template>
-        <el-menu-item index="1-4-1">item one</el-menu-item>
-      </el-sub-menu>
-    </el-sub-menu>
-    <el-menu-item index="2">
+  <el-menu router default-active='home'>
+    <el-menu-item index='home'>
+      <el-icon>
+        <House />
+      </el-icon>
+      <span>主页</span>
+    </el-menu-item>
+    <el-menu-item index='shop'>
       <el-icon>
         <Menu />
       </el-icon>
-      <span>Navigator Two</span>
+      <span>商店</span>
     </el-menu-item>
-    <el-menu-item index="3" disabled>
+    <el-menu-item index='storage'>
       <el-icon>
-        <Edit />
+        <Menu />
       </el-icon>
-      <span>Navigator Three</span>
-    </el-menu-item>
-    <el-menu-item index="4">
-      <el-icon>
-        <Setting />
-      </el-icon>
-      <span>Navigator Four</span>
+      <span>背包</span>
     </el-menu-item>
   </el-menu>
 </template>
 
-<style scoped lang="less">
+<style scoped lang='less'>
 .el-menu {
   height: calc(~'100vh - 48px');
 }

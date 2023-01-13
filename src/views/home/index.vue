@@ -1,55 +1,50 @@
-<script setup lang="ts">
-import HelloWorld from '@/components/HelloWorld.vue';
-import TheWelcome from '@/components/TheWelcome.vue';
-import '@/assets/main.css';
+<script setup lang='ts'>
+import { ref } from 'vue';
+import { request } from '@/util/request';
+import { useUserStore } from '@/store/modules/user';
+import { User } from '@/types/user';
+import { ElMessage } from 'element-plus';
 
+const keys = ['h5openid', 'h5token'];
+
+const cookie = ref('');
+
+const splitCookie = () => {
+  let token: any = {};
+  cookie.value.split(';').forEach((item) => {
+    let arr = item.trim().split('=');
+    if (keys.includes(arr[0])) {
+      token[arr[0]] = arr[1];
+    }
+  });
+  return token;
+};
+
+const login = async () => {
+  if (!cookie.value) return
+  try {
+    let token = splitCookie();
+    const { data } = await request(token);
+    if (data.result === 0) {
+      useUserStore().setCurrentUser(data as User);
+    } else {
+      ElMessage(data.msg)
+    }
+  } catch (e) {
+  }
+};
 </script>
 
 <template>
-  <header>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="@/assets/logo.svg"
-      width="125"
-      height="125"
+  <div>
+    <el-input
+      v-model='cookie'
+      :rows='2'
+      type='textarea'
+      placeholder='Please input cookie'
     />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+    <el-button @click='login' type='primary'>Primary</el-button>
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
+<style scoped lang='less'></style>
