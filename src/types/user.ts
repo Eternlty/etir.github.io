@@ -1,6 +1,7 @@
 export interface User {
   name: string;
+  headimgurl: string;
   uid: string;
-  h5openid: string;
-  h5token: string;
+  openid: string;
+  token: string;
 }

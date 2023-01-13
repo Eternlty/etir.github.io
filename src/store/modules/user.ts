@@ -11,9 +11,10 @@ export const useUserStore = defineStore('userStore', {
     return {
       currentUser: {
         name: '测试',
+        headimgurl: '',
         uid: '',
-        h5openid: '',
-        h5token: '',
+        openid: '',
+        token: '',
       },
       userList: [],
     };
@@ -33,5 +34,10 @@ export const useUserStore = defineStore('userStore', {
   },
   persist: {
     enabled: true,
+    strategies: [
+      {
+        storage: localStorage,
+      },
+    ],
   },
 });

@@ -4,6 +4,7 @@ import { request } from '@/util/request';
 import { useUserStore } from '@/store/modules/user';
 import { User } from '@/types/user';
 import { ElMessage } from 'element-plus';
+import { index } from '@/api/login';
 
 const keys = ['h5openid', 'h5token'];
 
@@ -24,7 +25,7 @@ const login = async () => {
   if (!cookie.value) return
   try {
     let token = splitCookie();
-    const { data } = await request(token);
+    const { data } = await index(token);
     if (data.result === 0) {
       useUserStore().setCurrentUser(data as User);
     } else {

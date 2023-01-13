@@ -10,10 +10,8 @@
     <div class="tumo-header-right">
       <el-dropdown>
         <span class="tumo-dropdown-link">
-          <el-image
-            src="http://thirdqq.qlogo.cn/qqapp/1105748669/723468CA6AAB637021BFBAD8097D6758/40"
-          />
-          <span> {{ userStore.currentUser.name }} </span>
+          <el-avatar :size="50" :src="userStore.currentUser.headimgurl" />
+          <span> {{ decodeURI(userStore.currentUser.name) }} </span>
         </span>
         <template #dropdown>
           <el-dropdown-menu>
@@ -98,7 +96,7 @@ const toggleSidebar = () => {
         font-size: 14px;
       }
 
-      .el-image {
+      .el-avatar {
         width: 22px;
         height: 22px;
         border-radius: 50%;

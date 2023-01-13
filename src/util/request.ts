@@ -7,7 +7,6 @@ axios.defaults.headers.post['Content-Type'] =
   'application/x-www-form-urlencoded';
 
 const commonParams = {
-  uid: '',
   pf: 'sq',
   from: '1',
 };
@@ -19,8 +18,8 @@ axios.interceptors.request.use((config) => {
     config.data = {
       ...{
         uid: currentUser.uid,
-        h5openid: currentUser.h5openid,
-        h5token: currentUser.h5token,
+        h5openid: currentUser.openid,
+        h5token: currentUser.token,
       },
       ...config.data,
     };
