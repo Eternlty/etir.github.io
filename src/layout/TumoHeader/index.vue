@@ -2,15 +2,21 @@
   <div class="tumo-header">
     <div class="tumo-header-left">
       <el-icon @click="toggleSidebar">
-        <Fold v-if='opened' />
-        <Expand v-else/>
+        <Fold v-if="opened" />
+        <Expand v-else />
       </el-icon>
       后台
     </div>
     <div class="tumo-header-right">
       <el-dropdown>
         <span class="tumo-dropdown-link">
-          <el-avatar :size="50" :src="userStore.currentUser.headimgurl" />
+          <el-image
+            v-if="userStore.currentUser.headimgurl"
+            :src="userStore.currentUser.headimgurl"
+          />
+          <el-icon v-else>
+            <User />
+          </el-icon>
           <span> {{ decodeURI(userStore.currentUser.name) }} </span>
         </span>
         <template #dropdown>
@@ -29,17 +35,17 @@
 
 <script setup lang="ts">
 import { useUserStore } from '@/store/modules/user';
-import { Fold, Setting, Expand } from '@element-plus/icons-vue';
+import { Expand, Fold, Setting, User } from '@element-plus/icons-vue';
 import { useAppStore } from '@/store/modules/app';
 import { computed } from 'vue';
 
 const userStore = useUserStore();
 const appStore = useAppStore();
 
-const opened = computed(() => appStore.getSidebarStatus)
-const user = computed(() => userStore.getCurrentUser)
+const opened = computed(() => appStore.getSidebarStatus);
+const user = computed(() => userStore.getCurrentUser);
 
-console.log(user)
+console.log(user);
 
 const toggleSidebar = () => {
   appStore.toggleSidebar();
@@ -96,10 +102,17 @@ const toggleSidebar = () => {
         font-size: 14px;
       }
 
-      .el-avatar {
+      .el-image {
         width: 22px;
         height: 22px;
         border-radius: 50%;
+        margin-right: 10px;
+      }
+
+      .el-icon {
+        width: 22px;
+        height: 22px;
+        cursor: pointer;
         margin-right: 10px;
       }
     }
