@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import TumoAside from '@/layout/TumoAside/index.vue';
 import TumoHeader from '@/layout/TumoHeader/index.vue';
-import { computed } from '_vue@3.2.45@vue';
+import { computed } from 'vue';
 import { useAppStore } from '@/store/modules/app';
 
 const opened = computed(() => useAppStore().getSidebarStatus);
