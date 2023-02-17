@@ -1,5 +1,5 @@
 <template>
-  <el-card v-for="user in userList">
+  <el-card v-for="user in userList" :key="user.uid">
     {{ user.name }}
   </el-card>
 </template>

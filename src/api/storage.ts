@@ -34,3 +34,42 @@ export function view(type: string) {
   };
   return request(params);
 }
+
+export function batch(id: number, num: number) {
+  let params = {
+    cmd: 'storage',
+    op: 'batch',
+    id: id,
+    num: num,
+  };
+  return request(params);
+}
+
+export function use(id: number) {
+  let params = {
+    cmd: 'storage',
+    op: 'use',
+    id: id,
+  };
+  return request(params);
+}
+
+export function abandon(id: number) {
+  let params = {
+    cmd: 'storage',
+    op: 'abandon',
+    id: id,
+  };
+  return request(params);
+}
+
+export function exchange(exid: string, num: number) {
+  let params = {
+    cmd: 'storage',
+    op: 'exchange',
+    exid: exid,
+    num: num,
+    times: 100,
+  };
+  return request(params);
+}

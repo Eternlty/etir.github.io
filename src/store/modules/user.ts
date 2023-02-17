@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia';
-import { User } from '@/types/user';
+import { BuyGood, User } from '@/types/user';
 
 interface UserState {
   currentUser: User;
   userList: User[];
+  buyGoodList: BuyGood[];
 }
 
 export const useUserStore = defineStore('userStore', {
@@ -17,6 +18,7 @@ export const useUserStore = defineStore('userStore', {
         token: '',
       },
       userList: [],
+      buyGoodList: []
     };
   },
   getters: {
@@ -31,6 +33,12 @@ export const useUserStore = defineStore('userStore', {
     setCurrentUser(user: User) {
       this.currentUser = user;
     },
+    addBuyGood(buyGood: BuyGood) {
+      this.buyGoodList.push(buyGood)
+    },
+    clearBuyGood(){
+      this.buyGoodList = []
+    }
   },
   persist: {
     enabled: true,

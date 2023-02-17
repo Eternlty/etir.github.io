@@ -5,3 +5,9 @@ export interface User {
   openid: string;
   token: string;
 }
+
+export interface BuyGood {
+  id: number,
+  shop_id: number,
+  num: number
+}
